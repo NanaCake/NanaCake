@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nana Cake Navbar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="about_us/about_us.css" />
+    <!-- Theme variables + dark mode overrides (added) -->
+    <style>
+        :root{
+            --color-bg: #F0FAFF;
+            --color-text: #274556;
+            --color-cta: #3B82B5;
+            --color-primary: #6EC1E4;
+            --color-accent: #4DA3D9;
+        }
+        html.dark {
+            --color-bg: #071025;
+            --color-text: #e6f3fb;
+            --color-cta: #0ea5a4;
+            --color-primary: #9ad3ff;
+            --color-accent: #7fb2d9;
+        }
+        body {
+            background: var(--color-bg);
+            color: var(--color-text);
+            transition: background .2s ease, color .2s ease;
+        }
+        /* ensure modal / header / key UI adapt */
+        .modal { background: rgba(0,0,0,0.6); }
+        header, .navbar, .homebg { background: transparent; }
+        /* theme-switch button */
+        #theme-switch{
+            position: fixed;
+            top: 14px;
+            right: 14px;
+            z-index: 99999;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-cta);
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+        }
+        html.dark #theme-switch { background: #1f2937; color: #fff; }
+
+        /* ===== Footer dark-mode overrides ===== */
+        html.dark .footer {
+            background: linear-gradient(180deg, rgba(8,14,24,0.96), rgba(6,12,20,0.92));
+            color: var(--color-text);
+            transition: background 0.28s ease, color 0.28s ease;
+        }
+
+        /* Keep footer container transparent in dark */
+        html.dark .footer .footer-container {
+            background: transparent;
+        }
+
+        /* Headings and labels */
+        html.dark .footer-section h3,
+        html.dark .footer-section h4 {
+            color: var(--color-cta);
+        }
+
+        /* Paragraphs, stats, small labels */
+        html.dark .footer-section p,
+        html.dark .footer-section .stat-label,
+        html.dark .footer-section .stat-number {
+            color: rgba(230,243,251,0.92);
+        }
+
+        /* Contact CTA  */
+        html.dark .contact-cta .contact-btn {
+            background: linear-gradient(135deg, var(--color-cta), var(--color-accent));
+            color: #fff;
+            border: none;
+            box-shadow: 0 6px 18px rgba(14,165,164,0.12);
+            transition: background .25s ease, transform .15s ease, box-shadow .25s ease;
+        }
+        html.dark .contact-cta .contact-btn:hover { transform: translateY(-2px); }
+
+        /* Social icons color */
+        html.dark .social-link svg { color: rgba(230,243,251,0.9); }
+
+        /* Footer bottom text */
+        html.dark .footer-bottom p,
+        html.dark .footer-bottom .footer-quote {
+            color: rgba(230,243,251,0.75);
+        }
+
+        /* Decorative floating items in footer */
+        html.dark .footer-floating-item {
+            opacity: 0.95;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.65));
+            transition: filter .28s ease, opacity .22s ease;
+        }
+
+        /* Ensure smooth transitions for footer children */
+        .footer, .footer * {
+            transition: color .22s ease, background .22s ease, border-color .22s ease, box-shadow .22s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Homepage Animation -->
+    <div class="homepage" id="homepage">
+        <header class="intro-header" id="teksHeader">
+            <h1>Nana Cake & Cookies</h1>
+        </header>
+
+        <!-- Awan (akan muncul dari bawah) -->
+        <div class="cloud-base" id="cloudBase">
+            <img src="gambar/Header (5).png" alt="Cloud Base">
+        </div>
+
+        <!-- Cupcake (pakai gambar) -->
+        <div class="cupcake" id="cupcake">
+            <img src="gambar/cake.png" alt="Cupcake">
+        </div>
+    </div>
+    <!-- Main Content (Hidden initially) -->
+    <button class="toggle-btn" id="toggleBtn">☰ Menu</button>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Open Menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </button>
+    <button id="theme-switch">☀</button>
+
+    <div class="nav-container" id="navContainer">
+        <nav class="navbar" id="navbar">
+            <div class="menu-grid">
+                <div class="nav-item home">
+                    <a href="../NanaCake/index.html">
+                        <span class="icon">🏠</span>
+                        <h3>Home</h3>
+                        <p>Eksplorasi tentang toko kami</p>
+                    </a>
+                </div>
+                <div class="nav-item shop">
+                    <a href="../NanaCake/shop.html">
+                    <span class="icon">🍰</span>
+                    <h3>Shop</h3>
+                    <p>Temukan manisnya kue di sini</p>
+                    </a>
+                </div>
+                <div class="nav-item sajian">
+                    <a href="#aboutUsPage">
+                        <span class="icon">👤</span>
+                        <h3>About</h3>
+                        <p>Ketahui lebih dalam tentang kami</p>
+                    </a>
+                </div>
+                <div class="nav-item about">
+                    <a href="#shop">
+                        <span class="icon">🥇</span>
+                        <h3>Menu Populer</h3>
+                        <p>Lihat menu populer kami</p>
+                    </a>
+                </div>
+                <div class="nav-item paket">
+                    <a href="#paket">
+                        <span class="icon">🎁</span>
+                        <h3>Paket Regular</h3>
+                        <p>Paket regular dengan berbagai pilihan</p>
+                    </a>
+                </div>
+                <div class="nav-item album">
+                    <a href="#meetus">
+                        <span class="icon">📞</span>
+                        <h3>Meet Us At</h3>
+                        <p>Koleksi manis dari dapur kami</p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="homebg" id="homebg">
+        <div class="clouds">
+            <div class="cloud cloud1"></div>
+            <div class="cloud cloud2"></div>
+            <div class="cloud cloud3"></div>
+            <div class="cloud cloud4"></div>
+            <div class="cloud cloud5"></div>
+        </div>
+
+        <div class="floating-elements">
+            <div class="floating-item">🧁</div>
+            <div class="floating-item">🍰</div>
+            <div class="floating-item">🐰</div>
+            <div class="floating-item">🌸</div>
+            <div class="floating-item">🍪</div>
+            <div class="floating-item">💕</div>
+        </div>
+
+        <div class="home-container">
+            <div class="home-header">
+                <h1 class="logo">Nana <br> Cake & Cookies</h1>
+                <p class="tagline">Kelezatan Rumahan di Setiap Gigitan</p>
+                <button class="cta-button" onclick="window.location.href='#aboutUsPage'">ORDER NOW</button>
+            </div>
+        </div>
+    </div>
+    <div id="aboutUsPage" class="about-page">
+        <section class="about-container">
+            <!-- Left side text/content -->
+        <div class="text-container">
+            <h4>Tentang Kami</h4>
+            <div id="welcome-text">
+                <h1>Selamat Datang Di Website Nana Cake</h1>
+                <p>Nana Cake and Cookies menghadirkan aneka kue rumahan berkualitas seperti kue kering, bolu, abon, dan bolu gambung sebagai best seller kami. Dibuat dari bahan pilihan, higienis, dan selalu fresh untuk menemani momen spesial Anda.
+</p>
+                <button class="more-btn"><a href="#shop" style="text-decoration:none; color:white;">MORE</a></button>
+            </div>
+        </div>
+
+        <!-- Image Carousel -->
+        <div class="carousel">
+            <img id="carousel-image" src="gambar/cake.png" alt="Cake">
+            <div class="dots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+                <span class="dot" data-index="3"></span>
+            </div>
+        </div>
+    </section>
+
+        <!-- Modal for Image Information -->
+        <div id="image-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="modal-title"></h2>
+                <p id="modal-description"></p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="shop" class="container-shop">
+        <h1>Produk Pilihan Kami</h1>
+
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card" onclick="goToShop('product1')">
+                <div class="product-image">
+                    <img src="gambar/BOLUFINAL/roti/bolugambungsrikaya.jpg" alt="Sepatu Sneakers Premium">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Gambung Kuah Srikaya</h2>
+                    <p class="product-description">Bolu gambung lembut dengan kuah srikaya manis yang bikin nagih.</p>
+                    <div class="product-footer">
+                        <div class="product-price">Rp20.000</div>
+                        <a href="shop.html">
+                            <button class="btn-buy">Lihat Detail</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card" onclick="goToShop('product2')">
+                <div class="product-image">
+                    <img src="gambar/BOLUFINAL/cookies/sagukeju (1).jpg" alt="Headphone Wireless">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Sagu Keju Pandan/Ori</h2>
+                    <p class="product-description">Kue sagu keju varian original dan pandan dengan rasa gurih, manis, dan tekstur lumer yang cocok untuk camilan sehari-hari.</p>
+                    <div class="product-footer">
+                        <div class="product-price">Rp35.000</div>
+                        <a href="shop.html">
+                            <button class="btn-buy">Lihat Detail</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card" onclick="goToShop('product3')">
+                <div class="product-image">
+                    <img src="gambar/BOLUFINAL/bolu/bolumarmer (2).jpg" alt="Tas Ransel Canvas">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">Marmer/Bolu Zebra</h2>
+                    <p class="product-description">Bolu zebra dengan motif marmer yang cantik, tekstur lembut, dan rasa manis legit yang pas untuk dinikmati sehari-hari.</p>
+                    <div class="product-footer">
+                        <div class="product-price">Rp25.000</div>
+                        <a href="shop.html">
+                            <button class="btn-buy">Lihat Detail</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Paket section -->
+    <section class="paket-section-container" id="paket">
+        <!-- corrected: ensure proper opening tag and wrapper -->
+        <section class="paket-spesial">
+            <h2>Paket Spesial</h2>
+            <div class="paket-tab-nav paket-main-nav">
+                 <button class="paket-tab-btn active" data-tab="paket1">Paket Super Hemat</button>
+                 <button class="paket-tab-btn" data-tab="paket2">Paket Ekonomis</button>
+                 <button class="paket-tab-btn" data-tab="paket3">Paket Reguler</button>
+                 <button class="paket-tab-btn" data-tab="paket4">Paket Puas</button>
+             </div>
+ 
+             <div class="paket-tab-content-wrapper">
+ 
+                 <!-- Paket hemat -->
+                 <div id="paket1" class="paket-tab-content active">
+ 
+                     <div class="paket-tab-nav paket-sub-nav">
+                         <button class="paket-tab-btn active" data-tab="hemat1">Hemat 1</button>
+                         <button class="paket-tab-btn" data-tab="hemat2">Hemat 2</button>
+                         <button class="paket-tab-btn" data-tab="hemat3">Hemat 3</button>
+                     </div>
+ 
+                     <div class="paket-tab-content-wrapper">
+ 
+                         <div id="hemat1" class="paket-tab-content active">
+                             <div class="paket-item-list">
+                                 <!-- Item -->
+                                 <div class="paket-menu-item">
+                                     <img src="gambar/nastar.jpg" class="paket-item-img">
+                                     <div class="paket-item-details">
+                                         <h4>Nastar</h4>
+                                     </div>
+                                 </div>
+                                 <!-- Item -->
+                                 <div class="paket-menu-item">
+                                     <img src="gambar/lidah kucing.jpg" class="paket-item-img">
+                                     <div class="paket-item-details">
+                                         <h4>Lidah Kucing</h4>
+                                     </div>
+                                 </div>
+                                 <!-- Item -->
+                                 <div class="paket-menu-item">
+                                     <img src="gambar/Putri Salju.jpg" class="paket-item-img">
+                                     <div class="paket-item-details">
+                                         <h4>Putri Salju</h4>
+                                     </div>
+                                 </div>
+                                 <!-- Item -->
+                                 <div class="paket-menu-item">
+                                     <img src="gambar/nastar keju.jpg" class="paket-item-img">
+                                     <div class="paket-item-details">
+                                         <h4>Kastengel</h4>
+                                     </div>
+                                 </div>
+                                 <!-- Item -->
+                                 <div class="paket-menu-item">
+                                     <img src="gambar/palm suger cheese.jpg" class="paket-item-img">
+                                     <div class="paket-item-details">
+                                         <h4>Palm Sugar Cheese</h4>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="paket-total-price-container">
+                                 <span class="paket-total-price-label">Total Hemat 1:</span>
+                                 <span class="paket-total-price-amount">Rp 135.000</span>
+                             </div>
+                         </div>
+
+                        <div id="hemat2" class="paket-tab-content">
+                            <div class="paket-item-list">
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/nastar.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Nastar</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/BOLUFINAL/cookies/cookiessusu (2).jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Milk Cookies</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/sagu keju.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Sagu Keju</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/Putri Salju.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Putsi Salju</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/thrumbprint stawberry.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Thumbprint Strawberry</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="paket-total-price-container">
+                                <span class="paket-total-price-label">Total Hemat 2:</span>
+                                <span class="paket-total-price-amount">Rp 135.000</span>
+                            </div>
+                        </div>
+
+                        <div id="hemat3" class="paket-tab-content">
+                            <div class="paket-item-list">
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/nastar.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Nastar</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/Putri Salju.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Putri Salju</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/mawar vanilla.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Mawar Vanilla</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/BOLUFINAL/cookies/kacangjadul.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Kacang Jadul</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/palm suger cheese.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Palm Sugar Cheese</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="paket-total-price-container">
+                                <span class="paket-total-price-label">Total Hemat 3:</span>
+                                <span class="paket-total-price-amount">Rp 135.000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Paket Reguler -->
+                <div id="paket3" class="paket-tab-content">
+
+                    <div class="paket-tab-nav paket-sub-nav">
+                        <button class="paket-tab-btn" data-tab="reguler1">Reguler 1</button>
+                        <button class="paket-tab-btn" data-tab="reguler2">Reguler 2</button>
+                        <button class="paket-tab-btn" data-tab="reguler3">Reguler 3</button>
+                    </div>
+
+                    <div class="paket-tab-content-wrapper">
+
+                        <div id="reguler1" class="paket-tab-content">
+                            <div class="paket-item-list">
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/nastar.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Nastar</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/Putri Salju.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Putri Salju</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/sagu keju.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Sagu Keju</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/palm suger cheese.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Palm Sugar Cheese</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="paket-total-price-container">
+                                <span class="paket-total-price-label">Total Reguler 1:</span>
+                                <span class="paket-total-price-amount">Rp 130.000</span>
+                            </div>
+                        </div>
+
+                        <div id="reguler2" class="paket-tab-content">
+                            <div class="paket-item-list">
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/nastar.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Nastar</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Cookies Susu</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/Putri Salju.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Putri Salju</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/BOLUFINAL/cookies/" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Cookies Nutella</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="paket-total-price-container">
+                                <span class="paket-total-price-label">Total Reguler 2:</span>
+                                <span class="paket-total-price-amount">Rp 130.000</span>
+                            </div>
+                        </div>
+
+                        <div id="reguler3" class="paket-tab-content">
+                            <div class="paket-item-list">
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/nastar.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Nastar</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/Putri Salju.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Putri Salju</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Kacang Jadul</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/thrumbprint stawberry.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Thumbprint Strawberry</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="paket-total-price-container">
+                                <span class="paket-total-price-label">Total Reguler 3:</span>
+                                <span class="paket-total-price-amount">Rp 130.000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paket Ekonomis -->
+                <div id="paket2" class="paket-tab-content">
+
+
+                    <div class="paket-tab-nav paket-sub-nav">
+                        <button class="paket-tab-btn" data-tab="ekonomis1">Ekonomis 1</button>
+                        <button class="paket-tab-btn" data-tab="ekonomis2">Ekomonis 2</button>
+                        <button class="paket-tab-btn" data-tab="ekonomis3">Ekonomis 3</button>
+                    </div>
+
+                    <div class="paket-tab-content-wrapper">
+
+                        <div id="ekonomis1" class="paket-tab-content">
+                            <div class="paket-item-list">
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/nastar.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Nastar</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/Putri Salju.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Putri Salju</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/palm suger cheese.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Palm Sugar Cheese</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="paket-total-price-container">
+                                <span class="paket-total-price-label">Total Ekonomis 1:</span>
+                                <span class="paket-total-price-amount">Rp 100.000</span>
+                            </div>
+                        </div>
+
+                        <div id="ekonomis2" class="paket-tab-content">
+                            <div class="paket-item-list">
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/nastar.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Nastar</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/Putri Salju.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Putri Salju</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/nastar keju.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Kastengel</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="paket-total-price-container">
+                                <span class="paket-total-price-label">Total Ekonomis 2:</span>
+                                <span class="paket-total-price-amount">Rp 100.000</span>
+                            </div>
+                        </div>
+
+                        <div id="ekonomis3" class="paket-tab-content">
+                            <div class="paket-item-list">
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/nastar.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Nastar</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Cookies Susu</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/nastar keju.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Kastengel</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="paket-total-price-container">
+                                <span class="paket-total-price-label">Total Ekonomis 3:</span>
+                                <span class="paket-total-price-amount">Rp 100.000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Paket Puas -->
+                <div id="paket4" class="paket-tab-content">
+
+
+                    <div class="paket-tab-nav paket-sub-nav">
+                        <button class="paket-tab-btn" data-tab="puas1">Puas 1</button>
+                        <button class="paket-tab-btn" data-tab="puas2">Puas 2</button>
+                        <button class="paket-tab-btn" data-tab="puas3">Puas 3</button>
+                    </div>
+
+                    <div class="paket-tab-content-wrapper">
+
+                        <div id="puas1" class="paket-tab-content">
+                            <div class="paket-item-list">
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/nastar.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Nastar</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/Putri Salju.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Putri Salju</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Cookies Nutella</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="paket-total-price-container">
+                                <span class="paket-total-price-label">Total Puas 1:</span>
+                                <span class="paket-total-price-amount">Rp 135.000</span>
+                            </div>
+                        </div>
+
+                        <div id="puas2" class="paket-tab-content">
+                            <div class="paket-item-list">
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/nastar.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Nastar</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/Putri Salju.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Putri Salju</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/nastar keju.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Kastengel</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="paket-total-price-container">
+                                <span class="paket-total-price-label">Total Puas 2:</span>
+                                <span class="paket-total-price-amount">Rp 135.000</span>
+                            </div>
+                        </div>
+
+                        <div id="puas3" class="paket-tab-content">
+                            <div class="paket-item-list">
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/nastar.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Nastar</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/Putri Salju.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Putri Salju</h4>
+                                    </div>
+                                </div>
+                                <!-- Item -->
+                                <div class="paket-menu-item">
+                                    <img src="gambar/sagu keju.jpg" class="paket-item-img">
+                                    <div class="paket-item-details">
+                                        <h4>Sagu Keju</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="paket-total-price-container">
+                                <span class="paket-total-price-label">Total Puas 3:</span>
+                                <span class="paket-total-price-amount">Rp 135.000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+    </section>
+    <!-- Contact Us Section -->
+    <section id="meetus" class="contact-us-section">
+        <h2>Contact Us</h2>
+        <div class="contact-form-container">
+            <div class="contact-form-left">
+                <div class="social-links-contact enhanced-social-links">
+                    <p><i class="fa-solid fa-location-dot" id="social-icon"></i> Lokasi : Tanjung, Kec. Tj.,
+                        Kabupaten
+                        Tabalong, Kalimantan Selatan 71512</p>
+                    <p><i class="fa-solid fa-phone" id="social-icon"></i> WhatsApp: +62 821-5082-5788</p>
+                    <p><i class="fa-brands fa-instagram" id="social-icon"></i> Instagram: <a
+                            href="https://www.instagram.com/nanacakeandcookies.tjg?utm_source=qr&igsh=ZzZ1MG9lM3pkY3Vw"
+                            target="_blank" rel="noopener noreferrer">Instagram</a></p>
+                    <p><i class="fa-brands fa-facebook" id="social-icon"></i> Facebook: <a
+                            href="https://www.facebook.com/share/1HXkp1uuFP/" target="_blank"
+                            rel="noopener noreferrer">Facebook</a></p>
+                </div>
+            </div>
+            <div class="contact-form-right">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.9731517173836!2d115.3728911739802!3d-2.1639184372130513!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dfab4090a4f2b69%3A0x89b60b949dcfdef3!2sNana%20Cake%20And%20Cookies!5e0!3m2!1sid!2sid!4v1759746046581!5m2!1sid!2sid"
+                    width="100%" height="100%" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" class="contact-illustration"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Nana Cake</h3>
+                <p>Menyediakan kue-kue manis berkualitas tinggi dengan bahan-bahan pilihan.</p>
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Pelanggan Puas</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Varian Kue</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Kontak Kami</h4>
+                <p>📍 Tanjung, Kec. Tj., Kabupaten Tabalong, Kalimantan Selatan 71512</p>
+                <p>📞 +62 821-5082-5788</p>
+                <p>📧 info@nanacake.com</p>
+                <div class="contact-cta">
+<button class="contact-btn" onclick="window.open('https://wa.me/6282150825788?text=Halo%2C%20saya%20ingin%20bertanya%20mengenai...', '_blank')">
+  Hubungi Kami
+</button>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Ikuti Kami</h4>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/ahnet.syaif?rdid=JayS0UXw00AuDKAl&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1HXkp1uuFP%2F#" class="social-link" aria-label="Facebook" target="_blank">
+                        <svg fill="currentColor">
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/nanacakeandcookies.tjg/?utm_source=qr&igsh=ZzZ1MG9lM3pkY3Vw#" target="_blank" class="social-link" aria-label="Instagram">
+                        <svg fill="currentColor">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                        </svg>
+                    </a>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating elements untuk menarik perhatian -->
+        <div class="footer-floating-elements">
+            <div class="footer-floating-item">🧁</div>
+            <div class="footer-floating-item">🍰</div>
+            <div class="footer-floating-item">🐰</div>
+            <div class="footer-floating-item">🌸</div>
+            <div class="footer-floating-item">🍪</div>
+            <div class="footer-floating-item">💕</div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Nana Cake. All rights reserved.</p>
+            <p class="footer-quote">"Manisnya kehidupan dimulai dari sepotong kue"</p>
+        </div>
+    </footer>
+
+</body>
+<script>
+    // Product data for popular menu
+    const popularProducts = [
+        { id: 1, name: 'Yummy Cupcake', price: 20000, image: 'https://images.unsplash.com/photo-1587241321921-91a834d6d191?w=500', description: 'Cupcake lembut dengan topping krim yang creamy dan lezat.' },
+        { id: 2, name: 'Donat Lumer', price: 25000, image: 'https://images.unsplash.com/photo-1617196034796-73f7b9e0aabb?w=500', description: 'Donat renyah dengan isian coklat yang lumer di mulut.' },
+        { id: 3, name: 'Sweet Macaron', price: 35000, image: 'https://images.unsplash.com/photo-1590080875831-2cf4eeab3bda?w=500', description: 'Macaron Prancis dengan berbagai rasa dan tekstur yang renyah.' }
+    ];
+
+    // Pricing for sizes (S: base, M: +5000, L: +10000)
+    function calculatePrice(basePrice, size) {
+        const adjustments = { S: 0, M: 5000, L: 10000 };
+        return basePrice + (adjustments[size] || 0);
+    }
+
+    // Format Rupiah
+    function formatRupiah(amount) {
+        return 'Rp ' + amount.toLocaleString('id-ID');
+    }
+
+    // Initialize size buttons for cards
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.card').forEach(card => {
+            const productId = parseInt(card.dataset.productId);
+            const product = popularProducts.find(p => p.id === productId);
+            if (!product) return;
+
+            const sizeButtons = card.querySelectorAll('.size-btn');
+            const priceElement = card.querySelector('.price');
+
+            sizeButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    sizeButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const size = btn.dataset.size;
+                    const newPrice = calculatePrice(product.price, size);
+                    priceElement.textContent = formatRupiah(newPrice);
+                    card.dataset.selectedSize = size;
+                });
+            });
+
+            // Set initial price and size
+            card.dataset.selectedSize = 'S';
+            priceElement.textContent = formatRupiah(product.price);
+        });
+
+        // Add event listeners for detail buttons
+        document.querySelectorAll('.detail-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const productId = parseInt(this.dataset.productId);
+                showProductDetail(productId);
+            });
+        });
+    });
+
+    // Show product detail modal
+    function showProductDetail(productId) {
+        const product = popularProducts.find(p => p.id === productId);
+        if (!product) return;
+
+        const card = document.querySelector(`.card[data-product-id="${productId}"]`);
+        const selectedSize = card ? card.dataset.selectedSize || 'S' : 'S';
+
+        document.getElementById('modalTitle').textContent = product.name;
+        // Set modal price to match current card price
+        if (card) {
+            const priceElement = card.querySelector('.price');
+            document.getElementById('modalPrice').textContent = priceElement.textContent;
+        }
+        document.getElementById('modalDescription').textContent = product.description;
+        document.getElementById('modalImage').src = product.image;
+        document.getElementById('modalImage').alt = product.name;
+
+        // Set up size buttons in modal
+        const modalSizeButtons = document.querySelectorAll('.modal-sizes .size-btn');
+        modalSizeButtons.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.size === selectedSize);
+            btn.addEventListener('click', function() {
+                modalSizeButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const newSize = btn.dataset.size;
+                const newPrice = calculatePrice(product.price, newSize);
+                document.getElementById('modalPrice').textContent = formatRupiah(newPrice);
+                // Update card as well
+                if (card) {
+                    card.dataset.selectedSize = newSize;
+                    const cardSizeButtons = card.querySelectorAll('.size-btn');
+                    cardSizeButtons.forEach(b => b.classList.remove('active'));
+                    const matchingBtn = card.querySelector(`.size-btn[data-size="${newSize}"]`);
+                    if (matchingBtn) matchingBtn.classList.add('active');
+                    const cardPriceElement = card.querySelector('.price');
+                    if (cardPriceElement) {
+                        cardPriceElement.textContent = formatRupiah(newPrice);
+                    }
+                }
+                // Update modal dataset
+                const modal = document.getElementById('productModal');
+                modal.dataset.selectedSize = newSize;
+                modal.dataset.selectedPrice = newPrice;
+            });
+        });
+
+        document.getElementById('quantityInput').value = 1;
+        const modal = document.getElementById('productModal');
+        modal.dataset.productId = productId;
+        modal.dataset.selectedSize = selectedSize;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Close modal
+    function closeModal() {
+        const modal = document.getElementById('productModal');
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Quantity controls
+    function increaseQuantity() {
+        const input = document.getElementById('quantityInput');
+        input.value = parseInt(input.value) + 1;
+    }
+
+    function decreaseQuantity() {
+        const input = document.getElementById('quantityInput');
+        if (parseInt(input.value) > 1) {
+            input.value = parseInt(input.value) - 1;
+        }
+    }
+
+    // Add to cart
+    function addToCart() {
+        const modal = document.getElementById('productModal');
+        const productId = modal.dataset.productId;
+        const product = popularProducts.find(p => p.id == productId);
+        const selectedSize = modal.dataset.selectedSize || 'S';
+        const selectedPrice = parseInt(modal.dataset.selectedPrice || product.price, 10);
+        const quantity = document.getElementById('quantityInput').value;
+        alert(`${product.name} ukuran ${selectedSize} (${quantity} pcs) berhasil ditambahkan ke keranjang dengan harga ${formatRupiah(selectedPrice)} masing-masing!`);
+    }
+
+    // Order via WhatsApp
+    function orderWhatsApp() {
+        const modal = document.getElementById('productModal');
+        const productId = modal.dataset.productId;
+        const product = popularProducts.find(p => p.id == productId);
+        const selectedSize = modal.dataset.selectedSize || 'S';
+        const selectedPrice = parseInt(modal.dataset.selectedPrice || product.price, 10);
+        const quantity = document.getElementById('quantityInput').value;
+        const total = selectedPrice * quantity;
+        const message = `Halo, saya ingin memesan:\nProduk: ${product.name}\nUkuran: ${selectedSize}\nJumlah: ${quantity} pcs\nHarga per pcs: ${formatRupiah(selectedPrice)}\nTotal: ${formatRupiah(total)}\nTerima kasih!`;
+        const waNumber = '6281234567890';
+        const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+        window.open(waUrl, '_blank');
+    }
+
+    // Close modal on outside click
+    document.getElementById('productModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeModal();
+        }
+    });
+
+    // Close modal on ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeModal();
+        }
+    });
+</script>
+
+<!-- Theme toggle script (added) -->
+<script>
+	(function() {
+		const btn = document.getElementById('theme-switch');
+		if (!btn) return;
+
+		function setTheme(theme) {
+			const isDark = theme === 'dark';
+			document.documentElement.classList.toggle('dark', isDark);
+			btn.textContent = isDark ? '☀️' : '🌙';
+			btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+			btn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+			localStorage.setItem('apcake-theme', theme);
+		}
+
+		btn.addEventListener('click', () => {
+			const currentlyDark = document.documentElement.classList.contains('dark');
+			setTheme(currentlyDark ? 'light' : 'dark');
+		});
+
+		document.addEventListener('DOMContentLoaded', () => {
+			const saved = localStorage.getItem('apcake-theme');
+			if (saved) {
+				setTheme(saved);
+			} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				setTheme('dark');
+			} else {
+				setTheme('light');
+			}
+		});
+	})();
+</script>
+<script src="about_us/about_us.js"></script>
+<script src="script.js"></script>
+
+</html>
